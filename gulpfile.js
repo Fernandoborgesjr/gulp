@@ -4,6 +4,7 @@ const autoprefixer = require("gulp-autoprefixer");
 const browserSync = require("browser-sync").create();
 const concat = require("gulp-concat");
 const babel = require("gulp-babel");
+const uglify = require("gulp-uglify");
 
 const SASS_PATH = "css/scss/**/*.scss";
 const JS_PATH = "js/main/*.js";
@@ -40,6 +41,7 @@ function compileJs() {
         presets: ["@babel/env"],
       })
     )
+    .pipe(uglify())
     .pipe(gulp.dest("js/"))
     .pipe(browserSync.stream());
 }
