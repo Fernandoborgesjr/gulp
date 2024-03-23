@@ -11,7 +11,11 @@
     "gulp-sass": "^5.0.0",
     "sass": "^1.39.2"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "@babel/core": "^7.24.3",
+    "@babel/preset-env": "^7.24.3",
+    "gulp-babel": "^8.0.0"
+  },
   "scripts": {
     "gulp": "node_modules/.bin/gulp"
   },

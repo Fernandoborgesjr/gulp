@@ -3,6 +3,7 @@ const sass = require("gulp-sass")(require("sass"));
 const autoprefixer = require("gulp-autoprefixer");
 const browserSync = require("browser-sync").create();
 const concat = require("gulp-concat");
+const babel = require("gulp-babel");
 
 const SASS_PATH = "css/scss/**/*.scss";
 const JS_PATH = "js/main/*.js";
@@ -31,7 +32,16 @@ function compilaSass() {
 }
 
 function compileJs() {
-  return gulp.src(JS_PATH).pipe(concat("main.js")).pipe(gulp.dest("js/")).pipe(browserSync.stream());
+  return gulp
+    .src(JS_PATH)
+    .pipe(concat("main.js"))
+    .pipe(
+      babel({
+        presets: ["@babel/env"],
+      })
+    )
+    .pipe(gulp.dest("js/"))
+    .pipe(browserSync.stream());
 }
 
 function watch() {
