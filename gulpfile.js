@@ -9,15 +9,18 @@ const uglify = require("gulp-uglify");
 const SASS_PATH = "css/scss/**/*.scss";
 const JS_PATH = "js/main/*.js";
 
-gulp.task("sass", compilaSass);
-gulp.task("js", compileJs);
-gulp.task("plugins", pluginsJs);
-gulp.task("watch", watch);
-gulp.task("browser-sync", browser);
-gulp.task(
-  "default",
-  gulp.parallel(["watch", "browser-sync", "sass", "js", "plugins"])
-);
+exports.sass = compilaSass;
+exports.js = compileJs;
+exports.plugins = pluginsJs;
+exports.watch = watch;
+exports.browserSync = browser;
+exports.default = gulp.parallel([
+  watch,
+  browser,
+  compilaSass,
+  compileJs,
+  pluginsJs,
+]);
 
 function compilaSass() {
   return gulp
