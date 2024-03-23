@@ -11,9 +11,13 @@ const JS_PATH = "js/main/*.js";
 
 gulp.task("sass", compilaSass);
 gulp.task("js", compileJs);
+gulp.task("plugins", pluginsJs);
 gulp.task("watch", watch);
 gulp.task("browser-sync", browser);
-gulp.task("default", gulp.parallel(["watch", "browser-sync", "sass", "js"]));
+gulp.task(
+  "default",
+  gulp.parallel(["watch", "browser-sync", "sass", "js", "plugins"])
+);
 
 function compilaSass() {
   return gulp
@@ -42,6 +46,17 @@ function compileJs() {
       })
     )
     .pipe(uglify())
+    .pipe(gulp.dest("js/"))
+    .pipe(browserSync.stream());
+}
+
+function pluginsJs() {
+  return gulp
+    .src([
+      "node_modules/jquery/dist/jquery.min.js",
+      "node_modules/moment/min/moment.min.js",
+    ])
+    .pipe(concat("plugins.js"))
     .pipe(gulp.dest("js/"))
     .pipe(browserSync.stream());
 }

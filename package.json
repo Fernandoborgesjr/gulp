@@ -10,6 +10,8 @@
     "gulp-concat": "^2.6.1",
     "gulp-sass": "^5.0.0",
     "gulp-uglify": "^3.0.2",
+    "jquery": "^3.7.1",
+    "moment": "^2.30.1",
     "sass": "^1.39.2"
   },
   "devDependencies": {
